@@ -12,7 +12,7 @@ With this library you can use 2x16 LCD easly on pic18f45k22 microcontroller. Als
 You can also:
   - Send instructions to LCD.
 
-### Functions
+## Functions
 There are 13 functions in this library, but we mainly use 5 of them. Other functions are used in these 5 functions. These functions are;
 - void LCDInitialize ();
 - void LCDInstruction (uint8_t byte);
@@ -22,7 +22,7 @@ There are 13 functions in this library, but we mainly use 5 of them. Other funct
 
 Let's examine these functions.
 
-#### LCD Initialize
+## LCD Initialize
 
 This function used before all of others in main function and it must called once. With this function you will send some important codes to LCD. 
 
@@ -43,7 +43,7 @@ void main() {
 }
 ```
 
-#### LCD Instruction
+## LCD Instruction
 
 
 
@@ -81,7 +81,7 @@ void main(void) {
 }
 ```
 
-#### LCD Set Position
+## LCD Set Position
 Sometimes you want show characters, strings or numbers with special position. For that, this function sets the cursor position to your request. The function have two parameter; x and y. X indicates column number and y indicates row number. The x number must be between 0 and 15, and, y must be 0 (first line) or 1 (second line).
 Example:
 ```c
@@ -108,7 +108,7 @@ void main(void) {
 ```
 Actually we do not need this function to write something with special position. Because the LCDPutChar() and LCDPutString() functions have this function too.
 
-#### LCD Put Character
+## LCD Put Character
 This function provides to us show character with a special position on LCD.
 Example:
 ```c
@@ -128,7 +128,7 @@ void main(void) {
     }
 }
 ```
-#### LCD Put String
+## LCD Put String
 This function provides to us show string with a special position on LCD.
 Example:
 ```c
@@ -148,7 +148,7 @@ void main(void) {
     }
 }
 ```
-#### LCD Put Numbers
+## LCD Put Numbers
 For string and character the library have functions, but for numbers we do not. To show numbers on LCD you can use `sprintf()` function with `stdio.h` library.
 Example:
 ```c
