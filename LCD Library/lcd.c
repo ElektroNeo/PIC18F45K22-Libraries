@@ -8,6 +8,19 @@
 #include "lcd.h"
 
 void LCDInitialize() {
+    LCDD0_DDR = 0;
+    LCDD1_DDR = 0;
+    LCDD2_DDR = 0;
+    LCDD3_DDR = 0;
+    LCDD4_DDR = 0;
+    LCDD5_DDR = 0;
+    LCDD6_DDR = 0;
+    LCDD7_DDR = 0;
+    
+    LCDRS_DDR = 0;
+    LCDRW_DDR = 0;
+    LCDE_DDR  = 0;
+    
     __delay_ms(300);
     LCDInstruction(FunctionSet8Bit);
     __delay_ms(100);
@@ -56,7 +69,7 @@ void LCDDisable() {
     LCDDelay(DelayTime);
 }
 
-void SendByteToLCD(char byte) {
+void SendByteToLCD(unsigned char byte) {
     LCDD0 = (unsigned)((byte & 0b00000001) >> 0);
     LCDD1 = (unsigned)((byte & 0b00000010) >> 1);
     LCDD2 = (unsigned)((byte & 0b00000100) >> 2);
@@ -67,7 +80,7 @@ void SendByteToLCD(char byte) {
     LCDD7 = (unsigned)((byte & 0b10000000) >> 7);
 }
 
-void LCDInstruction(char byte) {
+void LCDInstruction(unsigned char byte) {
     LCDInstructionMode();
     LCDWriting();
     LCDEnable();
@@ -86,12 +99,12 @@ void LCDInstruction(char byte) {
 
 */
 
-void LCDSetPos(uint8_t x, uint8_t y) {
-    uint8_t Pos = (unsigned)(0x80 + y*64 + x);
+void LCDSetPos(unsigned char x, unsigned char y) {
+    unsigned char Pos = (unsigned)(0x80 + y*64 + x);
     LCDInstruction(Pos);
 }
 
-void LCDPutChar(uint8_t byte, uint8_t x, uint8_t y) {
+void LCDPutChar(unsigned char byte, uint8_t x, uint8_t y) {
     LCDSetPos(x, y);
     LCDDataMode();
     LCDWriting();
@@ -102,7 +115,7 @@ void LCDPutChar(uint8_t byte, uint8_t x, uint8_t y) {
     LCDDisable();
 }
 
-void LCDPutString(char string[], uint8_t x, uint8_t y) {
+void LCDPutString(unsigned char string[], uint8_t x, uint8_t y) {
     LCDSetPos(x, y);
     for(uint8_t i = 0; i < 17; i++) {
         
@@ -117,4 +130,4 @@ void LCDPutString(char string[], uint8_t x, uint8_t y) {
 
         LCDDisable();
     }
-}
+}    

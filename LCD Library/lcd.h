@@ -16,6 +16,19 @@
 #define LCDRW          LATDbits.LD6
 #define LCDE           LATDbits.LD5
 
+#define LCDD0_DDR      TRISBbits.RB0
+#define LCDD1_DDR      TRISBbits.RB1
+#define LCDD2_DDR      TRISBbits.RB2
+#define LCDD3_DDR      TRISBbits.RB3
+#define LCDD4_DDR      TRISBbits.RB4
+#define LCDD5_DDR      TRISBbits.RB5
+#define LCDD6_DDR      TRISBbits.RB6
+#define LCDD7_DDR      TRISBbits.RB7
+
+#define LCDRS_DDR      TRISDbits.RD7
+#define LCDRW_DDR      TRISDbits.RD6
+#define LCDE_DDR       TRISDbits.RD5
+
 
 #define ClearDisplay        0b00000001 // Clears entire display and sets DDRAM address 
                                        // 0 in address counter.
@@ -51,6 +64,7 @@
 #include <xc.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <math.h>
 
 void LCDInitialize();
 void LCDDelay(uint16_t num);
@@ -60,10 +74,10 @@ void LCDWriting();
 void LCDReading();
 void LCDEnable();
 void LCDDisable();
-void SendByteToLCD(char byte);
+void SendByteToLCD(uint8_t byte);
 void LCDInstruction(uint8_t byte);
 void LCDSetPos(uint8_t x, uint8_t y);
 void LCDPutChar(uint8_t byte, uint8_t x, uint8_t y);
-void LCDPutString(char string[], uint8_t x, uint8_t y);
+void LCDPutString(uint8_t string[], uint8_t x, uint8_t y);
 
 #endif
